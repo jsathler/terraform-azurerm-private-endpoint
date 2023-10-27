@@ -38,7 +38,7 @@ resource "azurerm_private_endpoint" "default" {
 }
 
 resource "azurerm_private_endpoint_application_security_group_association" "default" {
-  for_each                      = length(var.private_endpoint.application_security_group_ids) == 0 ? [] : toset(var.private_endpoint.application_security_group_ids)
+  for_each                      = var.private_endpoint.application_security_group_ids == null ? [] : toset(var.private_endpoint.application_security_group_ids)
   private_endpoint_id           = azurerm_private_endpoint.default.id
   application_security_group_id = each.value
 }
