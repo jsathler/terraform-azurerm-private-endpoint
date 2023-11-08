@@ -30,6 +30,12 @@ resource "azurerm_application_security_group" "default" {
   location            = azurerm_resource_group.default.location
 }
 
+resource "azurerm_application_security_group" "sec" {
+  name                = "${local.prefix}-sec-asg"
+  resource_group_name = azurerm_resource_group.default.name
+  location            = azurerm_resource_group.default.location
+}
+
 module "vnet" {
   source              = "jsathler/network/azurerm"
   version             = "0.0.2"
@@ -71,7 +77,7 @@ module "private-endpoint" {
     private_connection_resource_id = azurerm_storage_account.default.id
     subresource_name               = "blob"
 
-    application_security_group_ids = [azurerm_application_security_group.default.id]
+    application_security_group_ids = [azurerm_application_security_group.default.id, azurerm_application_security_group.sec.id]
     private_dns_zone_id            = module.private-zone.private_zone_ids["privatelink.blob.core.windows.net"]
 
     #If you want to specify the ip address to be used, uncomment the line below
