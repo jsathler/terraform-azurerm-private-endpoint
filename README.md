@@ -44,6 +44,7 @@ Supported Azure services:
 | <a name="output_id"></a> [id](#output\_id) | n/a |
 | <a name="output_ip_configuration"></a> [ip\_configuration](#output\_ip\_configuration) | n/a |
 | <a name="output_network_interface"></a> [network\_interface](#output\_network\_interface) | n/a |
+| <a name="output_private_ip_address"></a> [private\_ip\_address](#output\_private\_ip\_address) | n/a |
 
 ## Examples
 ```hcl
