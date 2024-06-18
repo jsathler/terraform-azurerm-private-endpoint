@@ -15,7 +15,7 @@ resource "azurerm_private_endpoint" "default" {
     is_manual_connection              = var.private_endpoint.is_manual_connection
     private_connection_resource_id    = var.private_endpoint.private_connection_resource_id
     private_connection_resource_alias = var.private_endpoint.private_connection_resource_alias
-    subresource_names                 = [var.private_endpoint.subresource_name]
+    subresource_names                 = var.private_endpoint.subresource_name == null ? null : [var.private_endpoint.subresource_name]
     request_message                   = var.private_endpoint.request_message
   }
 
